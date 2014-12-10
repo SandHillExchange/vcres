@@ -1,26 +1,5 @@
 //
 //  AuthViewController.swift
-//  SwifterDemoiOS
-//
-//  Copyright (c) 2014 Matt Donnelly.
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
 //
 
 import UIKit
@@ -39,9 +18,17 @@ class AuthViewController: UIViewController {
     let useACAccount = true
 
     required init(coder aDecoder: NSCoder) {
+
         self.swifter = Swifter(consumerKey: "RErEmzj7ijDkJr60ayE2gjSHT", consumerSecret: "SbS0CHk11oJdALARa7NDik0nty4pXvAxdt7aj0R5y1gNzWaNEx")
         super.init(coder: aDecoder)
-                println("Elaine is cool")
+        
+        var returnValue: NSNumber? = NSUserDefaults.standardUserDefaults().objectForKey("user_id") as? NSNumber
+        //println("\(returnValue)")
+        if returnValue != nil //already logged in
+        {
+            println("Already logged in")
+            self.fetchCompanies()
+        }
     }
 
     @IBAction func didTouchUpInsideEmailButton(sender: AnyObject) {
@@ -52,7 +39,7 @@ class AuthViewController: UIViewController {
         }
         var email = emailTextField.text
         var password = pwTextField.text
-        let urlPath = "http://sandhill.exchange/account/signin"
+        let urlPath = "http://shxchange.appspot.com/account/signin"
         
         var request = NSMutableURLRequest(URL: NSURL(string: urlPath)!)
         var session = NSURLSession.sharedSession()
@@ -181,18 +168,9 @@ class AuthViewController: UIViewController {
             self.alertWithTitle("Error", message: error.localizedDescription)
         }
         
-        self.swifter.getStatusesHomeTimelineWithCount(20, sinceID: nil, maxID: nil, trimUser: true, contributorDetails: false, includeEntities: true, success: {
-            (statuses: [JSONValue]?) in
-            
-            // Successfully fetched timeline, so lets create and push the table view
-            let companyViewController = self.storyboard!.instantiateViewControllerWithIdentifier("CompanyViewController") as CompanyViewController
-            
-            if statuses != nil {
-                companyViewController.tweets = statuses!
-                self.presentViewController(companyViewController, animated: true, completion: nil)
-            }
-            
-            }, failure: failureHandler)
+        // fetch companies
+        //let calendarViewController = self.storyboard!.instantiateViewControllerWithIdentifier("CalendarViewController") as CalendarViewController
+        //self.presentViewController(calendarViewController, animated: true, completion: nil)
         
     }
     

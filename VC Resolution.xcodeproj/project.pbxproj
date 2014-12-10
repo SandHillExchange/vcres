@@ -15,6 +15,7 @@
 		3AE3869B1A37F076005849F1 /* SwifteriOS.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3AE3869A1A37F076005849F1 /* SwifteriOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3AE3869F1A37F1D4005849F1 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE3869E1A37F1D4005849F1 /* AuthViewController.swift */; };
 		3AE386A11A37F1F9005849F1 /* CompanyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE386A01A37F1F9005849F1 /* CompanyViewController.swift */; };
+		3AE386A31A3802DC005849F1 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE386A21A3802DC005849F1 /* CalendarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		3AE3869A1A37F076005849F1 /* SwifteriOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = SwifteriOS.framework; path = "/Users/elaineo/Library/Developer/Xcode/DerivedData/VC_Resolution-dyhmuirjwurhasevbrvfxzndutmf/Build/Products/Debug-iphoneos/SwifteriOS.framework"; sourceTree = "<absolute>"; };
 		3AE3869E1A37F1D4005849F1 /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		3AE386A01A37F1F9005849F1 /* CompanyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyViewController.swift; sourceTree = "<group>"; };
+		3AE386A21A3802DC005849F1 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 				3AE385F91A37E856005849F1 /* AppDelegate.swift */,
 				3AE385F71A37E761005849F1 /* Main.storyboard */,
 				3AE386A01A37F1F9005849F1 /* CompanyViewController.swift */,
+				3AE386A21A3802DC005849F1 /* CalendarViewController.swift */,
 				3AE3869E1A37F1D4005849F1 /* AuthViewController.swift */,
 				3AE385E01A37E5A7005849F1 /* LaunchScreen.xib */,
 				3AE385FB1A37E85C005849F1 /* Images.xcassets */,
@@ -232,6 +235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AE386A31A3802DC005849F1 /* CalendarViewController.swift in Sources */,
 				3AE385FA1A37E856005849F1 /* AppDelegate.swift in Sources */,
 				3AE3869F1A37F1D4005849F1 /* AuthViewController.swift in Sources */,
 				3AE386A11A37F1F9005849F1 /* CompanyViewController.swift in Sources */,
