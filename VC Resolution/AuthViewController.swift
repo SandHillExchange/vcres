@@ -41,7 +41,7 @@ class AuthViewController: UIViewController {
     required init(coder aDecoder: NSCoder) {
         self.swifter = Swifter(consumerKey: "RErEmzj7ijDkJr60ayE2gjSHT", consumerSecret: "SbS0CHk11oJdALARa7NDik0nty4pXvAxdt7aj0R5y1gNzWaNEx")
         super.init(coder: aDecoder)
-    
+                println("Elaine is cool")
     }
 
     @IBAction func didTouchUpInsideEmailButton(sender: AnyObject) {
