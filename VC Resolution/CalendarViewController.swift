@@ -26,13 +26,14 @@ class CalendarViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return calendar.count
+
+        return 5//calendar.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: nil)
         
-        cell.textLabel.text = calendar[indexPath.row]["text"].string
+        cell.textLabel!.text = "January 1 Fitness"
         
         return cell
     }

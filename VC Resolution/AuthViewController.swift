@@ -27,7 +27,6 @@ class AuthViewController: UIViewController {
         if returnValue != nil //already logged in
         {
             println("Already logged in")
-            self.fetchCompanies()
         }
     }
 
@@ -91,7 +90,7 @@ class AuthViewController: UIViewController {
             }
         })
         task.resume()
-        
+        self.fetchCompanies()
     }
     
     
@@ -101,7 +100,7 @@ class AuthViewController: UIViewController {
 
             self.alertWithTitle("Error", message: error.localizedDescription)
         }
-
+                self.fetchCompanies()
         if useACAccount {
 
             let accountStore = ACAccountStore()
@@ -111,6 +110,8 @@ class AuthViewController: UIViewController {
             accountStore.requestAccessToAccountsWithType(accountType, options: nil) {
                 granted, error in
                 if granted {
+                    println("twitter granted")
+                    
                     let twitterAccounts = accountStore.accountsWithAccountType(accountType)
 
                     if twitterAccounts?.count == 0
@@ -124,7 +125,8 @@ class AuthViewController: UIViewController {
                     }
                 }
                 else {
-                    self.alertWithTitle("Error", message: error.localizedDescription)
+                    self.alertWithTitle("Error",message: "Twitter not granted")
+                    //self.alertWithTitle("Error", message: error.localizedDescription)
                 }
             }
         }
@@ -132,7 +134,8 @@ class AuthViewController: UIViewController {
             swifter.authorizeWithCallbackURL(NSURL(string: "swifter://success")!, success: {
                 accessToken, response in
 
-                self.fetchTwitterHomeStream()
+                self.fetchCompanies()
+                //self.fetchTwitterHomeStream()
 
                 },failure: failureHandler
             )
@@ -148,6 +151,8 @@ class AuthViewController: UIViewController {
         
         self.swifter.getStatusesHomeTimelineWithCount(20, sinceID: nil, maxID: nil, trimUser: true, contributorDetails: false, includeEntities: true, success: {
             (statuses: [JSONValue]?) in
+            
+            println("\(statuses)")
                 
             // Successfully fetched timeline, so lets create and push the table view
             let companyViewController = self.storyboard!.instantiateViewControllerWithIdentifier("CompanyViewController") as CompanyViewController
@@ -162,15 +167,17 @@ class AuthViewController: UIViewController {
     }
 
     func fetchCompanies() {
-        
+        println("fetch companies")
         let failureHandler: ((NSError) -> Void) = {
             error in
             self.alertWithTitle("Error", message: error.localizedDescription)
         }
         
         // fetch companies
-        //let calendarViewController = self.storyboard!.instantiateViewControllerWithIdentifier("CalendarViewController") as CalendarViewController
-        //self.presentViewController(calendarViewController, animated: true, completion: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewControllerWithIdentifier("CalendarViewController") as CalendarViewController
+        
+        self.presentViewController(vc, animated: true, completion: nil)
         
     }
     
